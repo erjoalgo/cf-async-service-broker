@@ -1,0 +1,35 @@
+{
+    "jobs": [
+	{
+            "script": "create-unique-cf-home",
+	    "description": "unique cf login for all sub-scripts that must use cf commands",
+            "input": {
+		"CF_TARGET": "$CF_TARGET",
+		"CF_USER": "$CF_USER",
+		"CF_PASSWORD": "$CF_PASSWORD",
+		"CF_ORG": "$CF_ORG",
+		"CF_SPACE": "$CF_SPACE"
+            },
+            "output": {
+		"CF_HOME": "CF_HOME"
+            }
+	},
+	{
+            "script": "service",
+	    "description": "create async service",
+            "input": {
+		"instance_name": "$async-instance-name",
+		"service": "dummy-async-service-local",
+		"plan": "free",
+		"cf_home": "$CF_HOME",
+		"payload": {"secs": "60"},
+		"credential_paths": {"provision-completed-time-millis" :
+				     ["provision-completed-time-millis"]}
+            },
+            "output": {
+		"SERVICE_GUID": "async-instance-guid",
+		"provision-completed-time-millis": "provision-completed-time-millis"
+            }
+	}
+    ]
+}
