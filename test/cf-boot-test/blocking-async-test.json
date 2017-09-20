@@ -18,6 +18,7 @@
             "script": "service",
 	    "description": "create async service",
             "input": {
+		"if_exists": "delete",
 		"instance_name": "$async-instance-name",
 		"service": "dummy-async-service-local",
 		"plan": "free",
