@@ -3,6 +3,6 @@ applications:
   - name: erjoalgo-broker
     memory: 500M
     instances: 1
-    buildpack: https://github.com/heroku/heroku-buildpack-clojure.git
+    buildpack: git://github.com/heroku/heroku-buildpack-clojure.git
     stack: cflinuxfs2
     command: lein with-profile production trampoline ring server-headless
