@@ -61,13 +61,11 @@
                    :query-params (get "accepts_incomplete")
                    Boolean/valueOf)
                payload (-> req :body slurp json/read-str)
-               _ (log/infof "payload %s\n" payload)
                provision-time-millis (* (or (-> payload (get "parameters")
                                                 (get "secs")
                                                 Integer/parseInt)
                                             PROVISIONING-DELAY-SECS)
-                                        SECS)
-               _ (log/infof "payload %s\n" provision-time-millis)]
+                                        SECS)]
            (if accepts-incomplete?
              (let [provision-time (+ (System/currentTimeMillis)
                                      provision-time-millis)]
